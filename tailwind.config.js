@@ -14,7 +14,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Advent Pro', ...defaultTheme.fontFamily.sans],
+        sans: ['Livvic', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         ...myTheme
