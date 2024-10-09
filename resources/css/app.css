@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn span:first-child {
+  transform: translateX(-101%);
+  transition: transform .3s ease-in;
+}
+
+.btn:hover span {
+  transform: translateX(0);
+}
