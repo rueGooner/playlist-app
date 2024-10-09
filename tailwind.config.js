@@ -17,7 +17,7 @@ export default {
         sans: ['Livvic', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        ...myTheme
+        ...blueGreens
       }
     },
   },
