@@ -18,9 +18,9 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/other', function () {
-  return Inertia::render('Other');
-})->middleware(['auth', 'verified'])->name('other');
+Route::get('/events/create', function () {
+  return Inertia::render('Event/Create');
+})->middleware(['auth', 'verified'])->name('events');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

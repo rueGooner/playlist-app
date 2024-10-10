@@ -1,6 +1,6 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
-import {blueGreens, icyBlues, myTheme} from "./resources/themes/theme.ts";
+import {birdsBerries, blueGreens, icyBlues, myTheme} from "./resources/themes/theme.ts";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -17,7 +17,7 @@ export default {
         sans: ['Livvic', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        ...blueGreens
+        ...myTheme
       }
     },
   },

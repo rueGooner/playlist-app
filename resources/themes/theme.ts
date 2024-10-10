@@ -1,3 +1,5 @@
+import defaultTheme from 'tailwindcss/colors';
+
 export const blueGreens = {
   primary: '#021C1E',
   secondary: '#004445',
@@ -20,8 +22,8 @@ export const birdsBerries = {
 }
 
 export const myTheme = {
-  primary: '#404040',
-  secondary: '#FFAA00',
-  accent: '#00AAFF',
-  highlight: '#E4535E'
+  primary: defaultTheme.slate[600],
+  secondary: defaultTheme.slate[200],
+  accent: defaultTheme.indigo[400],
+  highlight: defaultTheme.rose[400]
 }
