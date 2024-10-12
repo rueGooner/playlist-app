@@ -12,7 +12,7 @@ jobs:
     steps:
       # Checkout the repository (updated to v3)
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Set up PHP 8.2
       - name: Set up PHP
@@ -26,9 +26,9 @@ jobs:
 
       # Set up Node.js 16
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-            node-version: '16'
+              node-version: '16'
 
       # Install Node.js dependencies (for frontend assets like Laravel Mix or Vite)
       - name: Install Node.js dependencies
