@@ -45,7 +45,7 @@ defineComponent({
                 <Icon icon="mdi:calendar-plus" class="text-2xl font-light"/>
               </template>
             </Tile>
-            <Tile title="Manage Events" icon="📋" href="/event">
+            <Tile title="Manage Events" icon="📋" href="/events">
               <template #icon>
                 <Icon icon="mdi:clipboard-text" class="text-3xl"/>
               </template>
