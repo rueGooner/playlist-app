@@ -40,11 +40,11 @@ jobs:
 
       # Set up AWS CLI for EC2 access
       - name: Set up AWS CLI
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}gs
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}gs
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Decode and save SSH private key
         run: echo "${{ secrets.AWS_PEM_KEY }}" | base64 --decode > /tmp/laravel-key.pem && chmod 400 /tmp/laravel-key.pem
