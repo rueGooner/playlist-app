@@ -36,7 +36,7 @@ jobs:
 
       # Build assets for production (adjust if using Laravel Mix or Vite)
       - name: Build frontend assets
-        run: npm run prod
+        run: npm run build
 
       # Set up AWS CLI for EC2 access
       - name: Set up AWS CLI
