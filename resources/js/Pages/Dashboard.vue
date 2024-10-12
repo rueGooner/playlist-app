@@ -25,7 +25,7 @@ defineComponent({
   <AuthenticatedLayout>
     <template #header>
       <h2
-        class="text-xl font-semibold leading-tight text-slate-200 bg-"
+        class="text-xl font-semibold leading-tight text-slate-200"
       >
         Dashboard
       </h2>
@@ -34,15 +34,15 @@ defineComponent({
     <div class="py-12">
       <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div
-          class="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800"
+          class="overflow-hidden shadow-sm rounded bg-slate-600"
         >
           <div class="p-6 text-slate-600 bg-slate-200">
             A welcome message of some sort.
           </div>
-          <div class="dashboard grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-6">
-            <Tile title="Create Event" href="/events/create">
+          <div class="dashboard grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-6">
+            <Tile title="Create an Event" href="/events/create">
               <template #icon>
-                <Icon icon="mdi:calendar-plus" class="text-3xl"/>
+                <Icon icon="mdi:calendar-plus" class="text-2xl font-light"/>
               </template>
             </Tile>
             <Tile title="Manage Events" icon="📋" href="/event">
