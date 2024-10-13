@@ -57,17 +57,17 @@ defineComponent({
             <PrimaryButton @click="displayNewEventModal(true)">
               DISPLAY
             </PrimaryButton>
-            <Tile title="Manage Events" icon="📋" href="/events">
+            <Tile title="Manage Events" href="/events">
               <template #icon>
                 <Icon icon="mdi:clipboard-text" class="text-3xl"/>
               </template>
             </Tile>
-            <Tile title="Client Management" icon="👥" href="/client">
+            <Tile title="Client Management" href="/client">
               <template #icon>
                 <Icon icon="mdi:account-group" class="text-3xl"/>
               </template>
             </Tile>
-            <Tile title="Analytics" icon="📊" href="/analytics">
+            <Tile title="Analytics"  href="/analytics">
               <template #icon>
                 <Icon icon="mdi:chart-line" class="text-3xl"/>
               </template>
@@ -76,7 +76,7 @@ defineComponent({
         </div>
       </div>
     </div>
-    <Modal :show="true">
+    <Modal :show="newEventModal" @close="displayNewEventModal(false)">
       <CreateEvent />
     </Modal>
   </AuthenticatedLayout>
