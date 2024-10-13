@@ -1,30 +1,33 @@
 <script setup lang="ts">
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, useForm } from '@inertiajs/vue3';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
-defineProps<{
-  canLogin?: boolean;
-  canRegister?: boolean;
-  laravelVersion: string;
-  phpVersion: string;
-}>();
+const form = useForm({
 
-function handleImageError() {
-  document.getElementById('screenshot-container')?.classList.add('!hidden');
-  document.getElementById('docs-card')?.classList.add('!row-span-1');
-  document.getElementById('docs-card-content')?.classList.add('!flex-row');
-  document.getElementById('background')?.classList.add('!hidden');
-}
+});
 </script>
 
 <template>
-  <Head title="Welcome" />
-  <div class="bg-slate-200 text-slate-600">
-    <div class="relative flex min-h-screen flex-col items-center justify-center">
-      <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
-        <main>
-          You will create a new event here.
-        </main>
+  <Head title="Create an Event" />
+  <AuthenticatedLayout>
+    <template #header>
+      <h2
+        class="text-xl font-semibold leading-tight text-slate-200"
+      >
+        Create Event
+      </h2>
+    </template>
+
+    <div class="relative mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="bg-slate-200 text-slate-600">
+        <div class="relative flex min-h-screen flex-col items-center justify-center">
+          <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
+            <main>
+              You will create a new event here.
+            </main>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </AuthenticatedLayout>
 </template>

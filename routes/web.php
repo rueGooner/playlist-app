@@ -24,9 +24,9 @@ Route::middleware('auth', 'verified')->group(function () {
   Route::get('/events/create', [EventsController::class, 'create'])->name('events.create');
 });
 
-Route::get('/events/create', function () {
-  return Inertia::render('Event/Create');
-})->middleware(['auth', 'verified'])->name('events');
+//Route::get('/events/create', function () {
+//  return Inertia::render('Event/Create');
+//})->middleware(['auth', 'verified'])->name('events');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

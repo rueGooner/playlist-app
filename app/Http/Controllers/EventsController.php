@@ -24,4 +24,9 @@ class EventsController extends Controller
       'events' => $events,
     ]);
   }
+
+  public function create()
+  {
+    return Inertia::render('Events/Create');
+  }
 }
