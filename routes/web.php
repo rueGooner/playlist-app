@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EventsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -17,6 +18,11 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth', 'verified')->group(function () {
+  Route::get('/events', [EventsController::class, 'index'])->name('events.index');
+  Route::get('/events/create', [EventsController::class, 'create'])->name('events.create');
+});
 
 Route::get('/events/create', function () {
   return Inertia::render('Event/Create');
