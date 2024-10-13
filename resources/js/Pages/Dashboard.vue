@@ -1,9 +1,18 @@
 <script setup lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import Tile from '@/Components/Tile.vue';
 import { Icon } from '@iconify/vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import Modal from '@/Components/Modal.vue';
+import CreateEvent from '@/Components/CreateEvent.vue';
+
+const newEventModal = ref(false);
+
+const displayNewEventModal = (displayValue) => {
+  newEventModal.value = displayValue;
+};
 
 defineComponent({
   name: 'Dashboard',
@@ -40,11 +49,14 @@ defineComponent({
             A welcome message of some sort.
           </div>
           <div class="dashboard grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-6">
-            <Tile title="Create an Event" href="/events/create">
-              <template #icon>
-                <Icon icon="mdi:calendar-plus" class="text-2xl font-light"/>
-              </template>
-            </Tile>
+<!--            <Tile title="Create an Event" href="/events/create">-->
+<!--              <template #icon>-->
+<!--                <Icon icon="mdi:calendar-plus" class="text-2xl font-light"/>-->
+<!--              </template>-->
+<!--            </Tile>-->
+            <PrimaryButton @click="displayNewEventModal(true)">
+              DISPLAY
+            </PrimaryButton>
             <Tile title="Manage Events" icon="📋" href="/events">
               <template #icon>
                 <Icon icon="mdi:clipboard-text" class="text-3xl"/>
@@ -64,5 +76,8 @@ defineComponent({
         </div>
       </div>
     </div>
+    <Modal :show="true">
+      <CreateEvent />
+    </Modal>
   </AuthenticatedLayout>
 </template>

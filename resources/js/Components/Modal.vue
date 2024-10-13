@@ -4,12 +4,12 @@ import { computed, onMounted, onUnmounted, watch } from 'vue';
 const props = withDefaults(
   defineProps<{
     show?: boolean;
-    maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+    maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '4xl';
     closeable?: boolean;
   }>(),
   {
     show: false,
-    maxWidth: '2xl',
+    maxWidth: '4xl',
     closeable: true,
   },
 );
@@ -52,7 +52,7 @@ const maxWidthClass = computed(() => {
     md: 'sm:max-w-md',
     lg: 'sm:max-w-lg',
     xl: 'sm:max-w-xl',
-    '2xl': 'sm:max-w-2xl',
+    '4xl': 'sm:max-w-4xl',
   }[props.maxWidth];
 });
 </script>
