@@ -8,24 +8,25 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import Modal from '@/Components/Modal.vue';
 import CreateEvent from '@/Components/CreateEvent.vue';
 
-const newEventModal = ref(false);
+const modalContent = ref<string | null>(null);
+const modalDisplay = ref(false);
 
-const displayNewEventModal = (displayValue) => {
-  newEventModal.value = displayValue;
+const setModalContent = (content: string) => {
+  modalDisplay.value = true;
+  if (modalDisplay) {
+    modalContent.value = content;
+  }
 };
 
-defineComponent({
-  name: 'Dashboard',
-  components: {
-    Tile,
-    Icon,
-  },
-  methods: {
-    navigateTo(route: string) {
-      this.$inertia.visit(route);
-    },
-  },
-});
+const closeModal = () => {
+  modalDisplay.value = false;
+  modalContent.value = null;
+}
+
+const logModalContent = () => {
+  console.log(modalContent.value); // Log modal content when opened
+};
+
 </script>
 
 <template>
@@ -49,13 +50,19 @@ defineComponent({
             A welcome message of some sort.
           </div>
           <div class="dashboard grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-6">
-<!--            <Tile title="Create an Event" href="/events/create">-->
-<!--              <template #icon>-->
-<!--                <Icon icon="mdi:calendar-plus" class="text-2xl font-light"/>-->
-<!--              </template>-->
-<!--            </Tile>-->
-            <PrimaryButton @click="displayNewEventModal(true)">
-              DISPLAY
+            <PrimaryButton @click="setModalContent('new-event'); logModalContent()"
+                           class="flex flex-col items-center justify-center">
+              <div class="flex flex-col items-center space-x-2">
+                <Icon icon="mdi:calendar-plus" class="text-3xl font-light"/>
+                <h3 class="text-xl font-light">Create New Event</h3>
+              </div>
+            </PrimaryButton>
+            <PrimaryButton @click="setModalContent('new-catalogue'); logModalContent()"
+                           class="flex flex-col items-center justify-center">
+              <div class="flex flex-col items-center space-x-2">
+                <Icon icon="mdi:music-box-multiple-outline" class="text-3xl font-light"/>
+                <h3 class="text-xl font-light">New Catalogue</h3>
+              </div>
             </PrimaryButton>
             <Tile title="Manage Events" href="/events">
               <template #icon>
@@ -67,7 +74,7 @@ defineComponent({
                 <Icon icon="mdi:account-group" class="text-3xl"/>
               </template>
             </Tile>
-            <Tile title="Analytics"  href="/analytics">
+            <Tile title="Analytics" href="/analytics">
               <template #icon>
                 <Icon icon="mdi:chart-line" class="text-3xl"/>
               </template>
@@ -76,8 +83,11 @@ defineComponent({
         </div>
       </div>
     </div>
-    <Modal :show="newEventModal" @close="displayNewEventModal(false)">
-      <CreateEvent />
+    <Modal :show="modalDisplay" @close="closeModal">
+      <CreateEvent v-if="modalContent === 'new-event'"/>
+      <div v-if="modalContent === 'new-catalogue'">
+        CREATE NEW CATALOGUE
+      </div>
     </Modal>
   </AuthenticatedLayout>
 </template>
