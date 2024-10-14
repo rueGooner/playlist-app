@@ -35,5 +35,10 @@ class Event extends Model
    */
   protected $fillable = [
     'title',
+    'user_id',
+    'event_date',
+    'start_time',
+    'end_time',
+    'address',
   ];
 }

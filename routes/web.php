@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\EventsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -18,14 +20,17 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/events/create', function () {
-  return Inertia::render('Event/Create');
-})->middleware(['auth', 'verified'])->name('events');
+Route::middleware('auth', 'verified')->group(function () {
+  Route::get('/events', [EventsController::class, 'index'])->name('events.index');
+  Route::post('/events', [EventsController::class, 'create'])->name('events.create');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/api/users', [UsersController::class, 'index']);
 
 require __DIR__.'/auth.php';

@@ -8,10 +8,11 @@ const props = defineProps<{
 </script>
 
 <template>
-  <Link :href="href" class="tile bg-white p-4 rounded-lg shadow hover:shadow-lg cursor-pointer">
-    <div class="flex items-center">
+  <Link :href="href"
+        class="tile bg-accent text-white p-4 rounded-lg shadow hover:shadow-lg hover:bg-highlight cursor-pointer transition-shadow duration-200 flex flex-col items-center justify-center">
+    <div class="flex flex-col items-center space-x-2">
       <slot name="icon"></slot>
-      <h3 class="text-xl font-semibold">{{ title }}</h3>
+      <h3 class="text-xl font-light">{{ title }}</h3>
     </div>
   </Link>
 </template>
