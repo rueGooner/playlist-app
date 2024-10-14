@@ -4,16 +4,18 @@ import InputLabel from '@/Components/InputLabel.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Icon } from '@iconify/vue';
 
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
 const props = defineProps<{
-  users: {
-    id: string;
-    name: string;
-    email: string;
-  }[]
+  users: User[]
 }>();
 
 const emit = defineEmits<{
-  (event: 'update:user_id', value: string): void
+  (event: 'update:user_id', value: User | null): void
 }>()
 
 const searchTerm = ref('');
@@ -31,16 +33,7 @@ const searchUsers = computed(() => {
   })
 })
 
-const handleUserSelection = (user: { id: string; name: string; email: string; }) => {
-  // console.log('before assignment', user.name); // Ensure this outputs the correct name
-  // searchTerm.value = user.name;
-  // console.log('after assignment', searchTerm.value); // C
-  // showDropdown.value = false;
-  // // emit('update:user_id', user);
-  // // filteredUsers.value = [];
-  // console.log('the search terms', searchTerm.value);
-  // console.log('show the dropdown', showDropdown.value);
-  // console.log(searchTerm.length >= 1 && showDropdown);
+const handleUserSelection = (user: User) => {
   selectedUser.value = user.name;
   searchTerm.value = '';
   emit('update:user_id', user);
@@ -48,7 +41,7 @@ const handleUserSelection = (user: { id: string; name: string; email: string; })
 
 const removeSelectedUser = () => {
   selectedUser.value = '';
-  emit('update:user_id');
+  emit('update:user_id', null);
 }
 </script>
 

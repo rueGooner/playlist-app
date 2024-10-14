@@ -7,9 +7,16 @@ import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import Checkbox from '@/Components/Checkbox.vue';
 import AutoComplete from '@/Components/AutoComplete.vue';
+import axios from 'axios';
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
 
 const isExistingClient = ref(false);
-const existingUsers = ref<{ id: string; name: string; email: string; }[]>([]);
+const existingUsers = ref<{ id: number; name: string; email: string; }[]>([]);
 const form = useForm({
   title: 'Test Event',
   user_name: 'Rachael H',
@@ -30,7 +37,6 @@ const fetchExistingClients = async () => {
 watch(isExistingClient, fetchExistingClients);
 
 const handleSubmit = () => {
-  console.log(form.address);
   form.post(route('events.create'), {
     onError: () => {
       console.log(form.errors);
@@ -38,15 +44,10 @@ const handleSubmit = () => {
     onFinish: () => {
       form.reset();
     }
-  })
-  // form.post(route('events.store'), {
-  //   onFinish: () => {
-  //     form.reset();
-  //   }
-  // });
+  });
 };
 
-const handleExistingUser = (user) => {
+const handleExistingUser = (user: User | null) => {
   if (user) {
     form.user_email = user.email;
     form.user_name = user.name;

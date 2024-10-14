@@ -45,21 +45,29 @@ import { defineProps } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 
-const props = defineProps({
-  events: {
-    type: Array,
-  }
-});
+interface Event {
+  id: number;
+  title: string;
+  event_date: string | Date;
+  start_time: string | Date;
+  end_time: string | Date;
+  user: {
+    name: string;
+  };
+}
 
-const formatDate = (date): string => {
-  return new Date(date).toLocaleDateString();
+const props = defineProps<{ events: Event[] }>()
+
+const formatDate = (date: string | Date): string => {
+  const parsedDate = new Date(date);
+  return !isNaN(parsedDate.getTime()) ? parsedDate.toLocaleDateString() : 'Invalid Date';
 };
 
-const formatTime = (time): string => {
-  return new Date(time).toLocaleTimeString([], {
-    hour: '2-digit',
-    minute: '2-digit'
-  });
+const formatTime = (time: string | Date): string => {
+  const parsedTime = new Date(time);
+  return !isNaN(parsedTime.getTime())
+    ? parsedTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    : 'Invalid Time';
 };
 
 </script>
