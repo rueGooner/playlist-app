@@ -16,6 +16,13 @@ return new class extends Migration {
       $table->timestamps();
     });
 
+    Schema::create('playlists', function (Blueprint $table) {
+      $table->id();
+      $table->string('name');
+      $table->foreignId('event_id')->constrained()->onDelete('cascade');
+      $table->timestamps();
+    });
+
     Schema::create('songs', function (Blueprint $table) {
       $table->id();
       $table->string('track_name');
@@ -24,6 +31,13 @@ return new class extends Migration {
       $table->string('genre');
       $table->foreignId('catalog_id')->nullable()->constrained('catalogs')->nullOnDelete();
       $table->string('released_date');
+    });
+
+    Schema::create('playlist_song_pivot', function (Blueprint $table) {
+      $table->id();
+      $table->foreignId('playlist_id')->constrained()->onDelete('cascade');
+      $table->foreignId('song_id')->constrained()->onDelete('cascade');
+      $table->timestamps();
     });
   }
 
@@ -34,5 +48,7 @@ return new class extends Migration {
   {
     Schema::dropIfExists('catalogs');
     Schema::dropIfExists('songs');
+    Schema::dropIfExists('playlists');
+    Schema::dropIfExists('playlist_song_pivot');
   }
 };
