@@ -7,6 +7,7 @@ import { Icon } from '@iconify/vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import Modal from '@/Components/Modal.vue';
 import CreateEvent from '@/Components/CreateEvent.vue';
+import FileUpload from '@/Components/FileUpload.vue';
 
 const modalContent = ref<string | null>(null);
 const modalDisplay = ref(false);
@@ -57,11 +58,11 @@ const logModalContent = () => {
                 <h3 class="text-xl font-light">Create New Event</h3>
               </div>
             </PrimaryButton>
-            <PrimaryButton @click="setModalContent('new-catalogue'); logModalContent()"
+            <PrimaryButton @click="setModalContent('file-upload'); logModalContent()"
                            class="flex flex-col items-center justify-center">
               <div class="flex flex-col items-center space-x-2">
                 <Icon icon="mdi:music-box-multiple-outline" class="text-3xl font-light"/>
-                <h3 class="text-xl font-light">New Catalogue</h3>
+                <h3 class="text-xl font-light">Upload Catalogue</h3>
               </div>
             </PrimaryButton>
             <Tile title="Manage Events" href="/events">
@@ -85,9 +86,7 @@ const logModalContent = () => {
     </div>
     <Modal :show="modalDisplay" @close="closeModal">
       <CreateEvent v-if="modalContent === 'new-event'"/>
-      <div v-if="modalContent === 'new-catalogue'">
-        CREATE NEW CATALOGUE
-      </div>
+      <FileUpload v-if="modalContent === 'file-upload'" />
     </Modal>
   </AuthenticatedLayout>
 </template>
