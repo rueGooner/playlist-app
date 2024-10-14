@@ -9,7 +9,7 @@ const form = useForm({
 });
 
 const handleFileUpload = () => {
-  form.post(route('file.uploads'));
+  form.post(route('api.uploads'));
 }
 </script>
 

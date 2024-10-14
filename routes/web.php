@@ -34,7 +34,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
   // API Routes
   Route::prefix('api')->group(function () {
     Route::get('/users', [UsersController::class, 'index']);
-    Route::post('/uploads', [UploadsController::class, 'store']);
+    Route::post('/uploads', [UploadsController::class, 'store'])->name('api.uploads');
   });
 });
 
