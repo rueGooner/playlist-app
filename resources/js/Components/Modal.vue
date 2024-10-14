@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, watch } from 'vue';
+import { Icon } from '@iconify/vue';
 
 const props = withDefaults(
   defineProps<{
     show?: boolean;
-    maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+    maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '4xl';
     closeable?: boolean;
   }>(),
   {
     show: false,
-    maxWidth: '2xl',
+    maxWidth: '4xl',
     closeable: true,
   },
 );
@@ -52,7 +53,7 @@ const maxWidthClass = computed(() => {
     md: 'sm:max-w-md',
     lg: 'sm:max-w-lg',
     xl: 'sm:max-w-xl',
-    '2xl': 'sm:max-w-2xl',
+    '4xl': 'sm:max-w-4xl',
   }[props.maxWidth];
 });
 </script>
@@ -62,7 +63,7 @@ const maxWidthClass = computed(() => {
     <Transition leave-active-class="duration-200">
       <div
         v-show="show"
-        class="fixed inset-0 z-50 overflow-y-auto px-4 py-6 sm:px-0"
+        class="fixed inset-0 z-50 overflow-y-auto px-4 py-6 sm:px-0 flex items-center justify-center"
         scroll-region
       >
         <Transition
@@ -81,6 +82,9 @@ const maxWidthClass = computed(() => {
             <div
               class="absolute inset-0 bg-gray-500 opacity-75 dark:bg-gray-900"
             />
+            <div class="right-0 z-20 text-white opacity-100 relative">
+              <Icon icon="mdi:close" class="text-7xl text-white z-20 right-0 top-10 cursor-pointer" @clic="close" />
+            </div>
           </div>
         </Transition>
 
