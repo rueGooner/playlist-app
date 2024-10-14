@@ -18,12 +18,12 @@ interface User {
 const isExistingClient = ref(false);
 const existingUsers = ref<{ id: number; name: string; email: string; }[]>([]);
 const form = useForm({
-  title: 'Test Event',
-  user_name: 'Rachael H',
-  user_email: 'racheharrison2019@gmail.com',
-  date: '2024-10-23',
-  start_time: '19:00',
-  end_time: '22:00',
+  title: '',
+  user_name: '',
+  user_email: '',
+  date: '',
+  start_time: '1',
+  end_time: '',
   address: '',
 });
 
