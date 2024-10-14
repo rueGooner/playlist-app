@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\UploadsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -16,21 +17,25 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
+Route::middleware(['auth', 'verified'])->group(function () {
+  // Dashboard Route
+  Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+  })->name('dashboard');
 
-Route::middleware('auth', 'verified')->group(function () {
-  Route::get('/events', [EventsController::class, 'index'])->name('events.index');
-  Route::post('/events', [EventsController::class, 'create'])->name('events.create');
+  // Events Resource Routes
+  Route::resource('events', EventsController::class);
+
+  // Profile Routes
+  Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+  Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+  Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+  // API Routes
+  Route::prefix('api')->group(function () {
+    Route::get('/users', [UsersController::class, 'index']);
+    Route::post('/uploads', [UploadsController::class, 'store']);
+  });
 });
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-Route::get('/api/users', [UsersController::class, 'index']);
 
 require __DIR__.'/auth.php';
