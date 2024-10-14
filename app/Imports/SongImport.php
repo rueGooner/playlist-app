@@ -25,4 +25,8 @@ class SongImport implements ToModel
       'catalog_id' => $this->catalog_id,
     ]);
   }
+
+  public function chunkSize(): int{
+    return 500;
+  }
 }

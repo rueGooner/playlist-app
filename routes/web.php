@@ -26,6 +26,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
   // Events Resource Routes
   Route::resource('events', EventsController::class);
 
+  Route::get('/catalogue', function () {
+    return Inertia::render('Catalogue/Index');
+  })->name('catalogue');
+
   // Profile Routes
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

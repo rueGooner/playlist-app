@@ -46,9 +46,9 @@ return new class extends Migration {
    */
   public function down(): void
   {
-    Schema::dropIfExists('catalogs');
-    Schema::dropIfExists('songs');
-    Schema::dropIfExists('playlists');
     Schema::dropIfExists('playlist_song_pivot');
+    Schema::dropIfExists('playlists');
+    Schema::dropIfExists('songs');
+    Schema::dropIfExists('catalogs');
   }
 };

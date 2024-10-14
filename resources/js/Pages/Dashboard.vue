@@ -75,9 +75,9 @@ const logModalContent = () => {
                 <Icon icon="mdi:account-group" class="text-3xl"/>
               </template>
             </Tile>
-            <Tile title="Analytics" href="/analytics">
+            <Tile title="Catalogue" href="/catalogue">
               <template #icon>
-                <Icon icon="mdi:chart-line" class="text-3xl"/>
+                <Icon icon="mdi:music-box" class="text-3xl"/>
               </template>
             </Tile>
           </div>
