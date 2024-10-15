@@ -47,26 +47,27 @@ const removeSelectedUser = () => {
 
 <template>
   <div class="relative flex items-center justify-between">
-    <div class="relative w-full">
+    <div class="w-full flex flex-col">
       <InputLabel for="existing-user" value="Event Owner"/>
-      <TextInput v-model="searchTerm" type="search" class="w-full border-accent"/>
-      <ul v-if="searchUsers.length"
-          class="absolute z-10 bg-white border border-accent mt-1 rounded shadow-lg">
-        <li v-for="user in searchUsers" :key="user.email" class="p-2 hover:bg-gray-200 cursor-pointer"
-            @click="handleUserSelection(user)">
-          {{ user.name }} ({{ user.email }})
-        </li>
-      </ul>
-    </div>
-    <div v-if="selectedUser"  class="flex flex-col items-end justify-end">
-      <InputLabel for="existing-user" value="New event for"/>
-      <p
-         class="flex items-center bg-highlight inline-flex text-white rounded text-sm px-2 py-1 font-bold">
-        {{ selectedUser }}
-        <Icon icon="mdi:close"
-              class="border rounded ml-8 hover:border-accent hover:text-accent cursor-pointer font-bold"
-              @click="removeSelectedUser()" />
-      </p>
+      <div class="relative">
+        <TextInput v-model="searchTerm" type="search" class="w-full border-accent"/>
+        <ul v-if="searchUsers.length"
+            class="absolute z-10 bg-white border border-accent mt-1 rounded shadow-lg">
+          <li v-for="user in searchUsers" :key="user.email" class="p-2 hover:bg-gray-200 cursor-pointer"
+              @click="handleUserSelection(user)">
+            {{ user.name }} ({{ user.email }})
+          </li>
+        </ul>
+        <div class="absolute top-2 left-2">
+          <p v-if="selectedUser"
+             class="items-center bg-highlight inline-flex text-white rounded text-sm px-2 py-1 font-bold">
+            {{ selectedUser }}
+            <Icon icon="mdi:close"
+                  class="border rounded ml-8 hover:border-accent hover:text-accent cursor-pointer font-bold"
+                  @click="removeSelectedUser()" />
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </template>

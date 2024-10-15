@@ -9,7 +9,10 @@ class UsersController extends Controller
 {
   public function index()
   {
-    $users = User::query()->select('id', 'name', 'email')->get();
+    $users = User::query()
+      ->select('id', 'name', 'email')
+      ->where('role', '!=', 'admin')
+      ->get();
     return response()->json($users);
   }
 }

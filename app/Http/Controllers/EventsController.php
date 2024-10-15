@@ -29,7 +29,22 @@ class EventsController extends Controller
     ]);
   }
 
-  public function create(Request $request)
+  public function store(Request $request)
+  {
+    $this->validateRequest($request);
+
+    $user = $this->findUserByEmail($request->user_email);
+
+    if (!$user) {
+      return redirect()->back()->withErrors(['user_email' => 'User not found.']);
+    }
+
+    $event = $this->createNewEvent($request, $user->id);
+
+    return $this->renderEventIndexWithSuccessMessage();
+  }
+
+  private function validateRequest(Request $request): void
   {
     $request->validate([
       'title' => 'required|string|max:255',
@@ -40,26 +55,31 @@ class EventsController extends Controller
       'end_time' => 'required|date_format:H:i|after:start_time',
       'address' => 'required|string|max:255',
     ]);
+  }
 
-    $user = User::firstOrCreate(
-      ['email' => $request->user_email],
-      [
-        'name' => $request->user_name,
-        'email' => $request->user_email,
-        'password' => Hash::make('password!1'),
-        'role', 'client'
-      ],
-    );
+  private function findUserByEmail(string $email): ?User
+  {
+    return User::where('email', $email)->first();
+  }
 
-    $event = Event::create([
+  private function createNewEvent(Request $request, int $userId): Event
+  {
+    return Event::create([
       'title' => $request->title,
       'event_date' => $request->date,
       'start_time' => Carbon::parse($request->date . ' ' . $request->start_time)->toDateTimeString(),
       'end_time' => Carbon::parse($request->date . ' ' . $request->end_time)->toDateTimeString(),
       'address' => $request->address,
-      'user_id' => $user->id,
+      'user_id' => $userId,
     ]);
+  }
 
-    return redirect()->route('events.index')->with('success', 'Event Created');
+  private function renderEventIndexWithSuccessMessage()
+  {
+    $events = Event::with('user')->orderBy('created_at', 'desc')->get(); // Fetching the events again for rendering
+    return Inertia::render('Events/Index', [
+      'events' => $events,
+      'message' => 'New Event Created Successfully.',
+    ]);
   }
 }

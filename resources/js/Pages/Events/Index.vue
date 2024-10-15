@@ -11,6 +11,10 @@
     </template>
     <div class="relative overflow-x-auto py-12">
       <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <!-- Display the message if it exists -->
+        <div v-if="message" class="mb-4 p-4 bg-green-600 text-white rounded">
+          {{ message }}
+        </div>
         <table class="w-full text-sm text-left rtl:text-right text-primary shadow-lg">
           <thead class="text-secondary uppercase bg-primary">
           <tr>
@@ -56,7 +60,7 @@ interface Event {
   };
 }
 
-const props = defineProps<{ events: Event[] }>()
+const props = defineProps<{ events: Event[], message?: string; }>()
 
 const formatDate = (date: string | Date): string => {
   const parsedDate = new Date(date);

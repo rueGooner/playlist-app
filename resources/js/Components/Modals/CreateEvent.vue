@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import InputLabel from '@/Components/InputLabel.vue';
 import TextInput from '@/Components/TextInput.vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
-import Checkbox from '@/Components/Checkbox.vue';
 import AutoComplete from '@/Components/AutoComplete.vue';
 import axios from 'axios';
+import { Icon } from '@iconify/vue';
 
 interface User {
   id: number;
@@ -15,8 +15,7 @@ interface User {
   email: string;
 }
 
-const isExistingClient = ref(false);
-const existingUsers = ref<{ id: number; name: string; email: string; }[]>([]);
+const existingUsers = ref<User[]>([]);
 const form = useForm({
   title: '',
   user_name: '',
@@ -27,17 +26,13 @@ const form = useForm({
   address: '',
 });
 
-const fetchExistingClients = async () => {
-  if (isExistingClient.value) {
-    const response = await axios.get('/api/users');
-    existingUsers.value = response.data;
-  }
-}
-
-watch(isExistingClient, fetchExistingClients);
+onMounted(async () => {
+  const response = await axios.get('/api/users');
+  existingUsers.value = response.data;
+});
 
 const handleSubmit = () => {
-  form.post(route('events.create'), {
+  form.post(route('events.store'), {
     onError: () => {
       console.log(form.errors);
     },
@@ -95,6 +90,16 @@ const handleExistingUser = (user: User | null) => {
       </div>
     </div>
     <div class="mt-4 flex justify-end">
+      <div v-if="selectedUser"  class="flex flex-col items-end justify-end">
+        <InputLabel for="existing-user" value="New event for"/>
+        <p
+          class="flex items-center bg-highlight inline-flex text-white rounded text-sm px-2 py-1 font-bold">
+          {{ selectedUser }}
+          <Icon icon="mdi:close"
+                class="border rounded ml-8 hover:border-accent hover:text-accent cursor-pointer font-bold"
+                @click="removeSelectedUser()" />
+        </p>
+      </div>
       <PrimaryButton class="ms-4">
         Create
       </PrimaryButton>
