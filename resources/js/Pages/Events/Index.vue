@@ -12,8 +12,9 @@
     <div class="relative overflow-x-auto py-12">
       <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <!-- Display the message if it exists -->
-        <div v-if="message" class="mb-4 p-4 bg-green-600 text-white rounded">
+        <div v-if="message" class="mb-4 p-4 bg-green-600 text-white rounded flex items-center justify-between">
           {{ message }}
+          <Icon icon="mdi:close" @click="closeMessage" />
         </div>
         <table class="w-full text-sm text-left rtl:text-right text-primary shadow-lg">
           <thead class="text-secondary uppercase bg-primary">
@@ -45,9 +46,10 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
+import { defineProps, ref } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import { Icon } from '@iconify/vue';
 
 interface Event {
   id: number;
@@ -61,6 +63,10 @@ interface Event {
 }
 
 const props = defineProps<{ events: Event[], message?: string; }>()
+const message = ref<string>(props.message || '');
+const closeMessage = () => {
+  message.value = ''
+}
 
 const formatDate = (date: string | Date): string => {
   const parsedDate = new Date(date);
