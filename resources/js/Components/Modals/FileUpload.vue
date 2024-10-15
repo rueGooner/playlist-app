@@ -4,14 +4,32 @@ import InputLabel from '@/Components/InputLabel.vue';
 import TextInput from '@/Components/TextInput.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import InputError from '@/Components/InputError.vue';
+import AutoComplete from '@/Components/AutoComplete.vue';
+import { onMounted, ref } from 'vue';
+import axios from 'axios';
 
-interface FormState {
-  file_upload: File | null; // File type or null if no file is selected
+interface User {
+  id: number;
+  name: string;
+  email: string;
 }
 
+interface FormState {
+  file_upload: File | null;
+  catalog_name: string;
+  user_id: number | null;
+}
+
+const existingUsers = ref<User[]>([]);
 const form = useForm<FormState>({
   file_upload: '',
-  catalog_name: 'Test Catalogue'
+  catalog_name: 'Test Catalogue',
+  user_id: null
+});
+
+onMounted(async () => {
+  const response = await axios.get('/api/users');
+  existingUsers.value = response.data;
 });
 
 const handleFileUpload = () => {
@@ -26,10 +44,23 @@ const handleFileChange = (event: Event) => {
   const target = event.target as HTMLInputElement;
   form.file_upload = target.files?.[0];
 }
+
+const handleExistingUser = (user: User | null) => {
+  if (user) {
+    form.user_email = user.email;
+    form.user_name = user.name;
+  } else {
+    form.user_name = '';
+    form.user_email = '';
+  }
+}
 </script>
 
 <template>
   <form @submit.prevent="handleFileUpload" class="bg-secondary px-4 py-6">
+    <div class="mt-2 text-primary max-w-md mx-auto">
+      <AutoComplete :users="existingUsers" @update:user_id="handleExistingUser" />
+    </div>
     <div class="mt-4 text-primary max-w-md mx-auto">
       <InputLabel for="catalog_name" value="Catalog Name"/>
       <TextInput v-model="form.catalog_name" class="w-full border-accent focus:border-primary focus:ring-primary"/>

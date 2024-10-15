@@ -4,3 +4,4 @@ export interface NewUser {
   password: string;
   role: 'client' | 'dj' | null
 }
+
