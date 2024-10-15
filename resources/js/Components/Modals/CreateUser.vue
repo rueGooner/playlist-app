@@ -10,6 +10,7 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 
 const password_confirmation = ref<string>('');
 const form = useForm<NewUser>({
+  name: '',
   first_name: '',
   last_name: '',
   password: '',
@@ -65,12 +66,17 @@ const shouldShowFeedback = computed(() => {
                    class="w-full border-accent focus:border-primary focus:ring-transparent"/>
       </div>
       <div class="mt-2">
-        <InputLabel for="role" value="User Type" />
+        <InputLabel for="role" value="User Type"/>
         <select v-model="form.role" class="rounded-md border-accent w-full text-primary">
           <option disabled value="">User Role</option>
           <option value="dj">DJ</option>
           <option value="client">Client</option>
         </select>
+      </div>
+      <div class="mt-2">
+        <InputLabel for="user_name" value="Username"/>
+        <TextInput v-model="form.user_name"
+                   class="w-full border-accent focus:border-primary focus:ring-transparent"/>
       </div>
     </div>
     <div class="mt-4 flex justify-end">

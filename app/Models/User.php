@@ -15,6 +15,8 @@ use Illuminate\Support\Carbon;
  *
  * @property int $id
  * @property string $name
+ * @property string $first_name
+ * @property string $last_name
  * @property string $email
  * @property string|null $email_verified_at
  * @property string $password
@@ -38,6 +40,8 @@ class User extends Authenticatable
    */
   protected $fillable = [
     'name',
+    'first_name',
+    'last_name',
     'email',
     'password',
     'role'
