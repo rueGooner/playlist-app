@@ -47,11 +47,11 @@ const removeSelectedUser = () => {
 
 <template>
   <div class="relative flex items-center justify-between">
-    <div class="relative w-1/2">
-      <InputLabel for="existing-user" value="Search for user"/>
-      <TextInput v-model="searchTerm" type="search" class="w-full"/>
+    <div class="relative w-full">
+      <InputLabel for="existing-user" value="Event Owner"/>
+      <TextInput v-model="searchTerm" type="search" class="w-full border-accent"/>
       <ul v-if="searchUsers.length"
-          class="absolute z-10 bg-white border border-gray-300 mt-1 rounded shadow-lg">
+          class="absolute z-10 bg-white border border-accent mt-1 rounded shadow-lg">
         <li v-for="user in searchUsers" :key="user.email" class="p-2 hover:bg-gray-200 cursor-pointer"
             @click="handleUserSelection(user)">
           {{ user.name }} ({{ user.email }})

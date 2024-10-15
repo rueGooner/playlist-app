@@ -18,7 +18,7 @@ class CatalogController extends Controller
       return redirect()->route('home')->with('error', 'Unauthorised access.');
     }
 
-    $catalog = Catalog::with('user')->orderBy('created_at', 'desc')->get();
+    $catalog = Catalog::orderBy('created_at', 'desc')->get();
 
     return Inertia::render('Catalogue/Index', [
       'catalog' => $catalog,

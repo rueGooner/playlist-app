@@ -60,35 +60,15 @@ const handleExistingUser = (user: User | null) => {
 
 <template>
   <form @submit.prevent="handleSubmit" class="bg-secondary px-4 py-6">
-    <div class="mt-2 block">
-      <label class="flex items-center">
-        <Checkbox name="existingClient" v-model:checked="isExistingClient"/>
-        <span class="ms-2 text-sm text-slate-600">
-          Is this event for an existing client?
-        </span>
-      </label>
-    </div>
-    <div v-if="isExistingClient">
+    <div class="flex grid grid-cols-2 gap-6">
       <AutoComplete :users="existingUsers" @update:user_id="handleExistingUser" />
-    </div>
-    <div v-else class="mt-4 text-primary inline-flex grid grid-cols-2 gap-6">
-      <div class="mt-4 text-primary">
-        <InputLabel for="user_name" value="Client Name"/>
-        <TextInput v-model="form.user_name" class="w-full border-accent focus:border-primary focus:ring-primary"/>
-        <InputError class="mt-2" :message="form.errors.user_name"/>
-      </div>
-      <div class="mt-4 text-primary">
-        <InputLabel for="user_email" value="Client Email"/>
-        <TextInput v-model="form.user_email" type="email" class="w-full border-accent focus:border-primary focus:ring-primary"/>
-        <InputError class="mt-2" :message="form.errors.user_email"/>
-      </div>
-    </div>
-    <div>
-      <div class="mt-4 text-primary">
+      <div class="text-primary">
         <InputLabel for="title" value="Event Title"/>
         <TextInput v-model="form.title" class="w-full border-accent focus:border-primary focus:ring-primary"/>
         <InputError class="mt-2" :message="form.errors.title"/>
       </div>
+    </div>
+    <div>
       <div class="mt-4 text-primary inline-flex grid grid-cols-3 gap-6">
         <div class="relative w-full">
           <InputLabel for="date" value="Event Date"/>

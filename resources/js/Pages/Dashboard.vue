@@ -6,8 +6,9 @@ import Tile from '@/Components/Tile.vue';
 import { Icon } from '@iconify/vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import Modal from '@/Components/Modal.vue';
-import CreateEvent from '@/Components/CreateEvent.vue';
-import FileUpload from '@/Components/FileUpload.vue';
+import CreateEvent from '@/Components/Modals/CreateEvent.vue';
+import FileUpload from '@/Components/Modals/FileUpload.vue';
+import CreateUser from '@/Components/Modals/CreateUser.vue';
 
 const modalContent = ref<string | null>(null);
 const modalDisplay = ref(false);
@@ -51,14 +52,21 @@ const logModalContent = () => {
             A welcome message of some sort.
           </div>
           <div class="dashboard grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-6">
-            <PrimaryButton @click="setModalContent('new-event'); logModalContent()"
+            <PrimaryButton @click="setModalContent('new-user');"
+                           class="flex flex-col items-center justify-center">
+              <div class="flex flex-col items-center space-x-2">
+                <Icon icon="mdi:account-box-plus-outline" class="text-3xl font-light"/>
+                <h3 class="text-xl font-light">Create New User</h3>
+              </div>
+            </PrimaryButton>
+            <PrimaryButton @click="setModalContent('new-event');"
                            class="flex flex-col items-center justify-center">
               <div class="flex flex-col items-center space-x-2">
                 <Icon icon="mdi:calendar-plus" class="text-3xl font-light"/>
                 <h3 class="text-xl font-light">Create New Event</h3>
               </div>
             </PrimaryButton>
-            <PrimaryButton @click="setModalContent('file-upload'); logModalContent()"
+            <PrimaryButton @click="setModalContent('file-upload');"
                            class="flex flex-col items-center justify-center">
               <div class="flex flex-col items-center space-x-2">
                 <Icon icon="mdi:music-box-multiple-outline" class="text-3xl font-light"/>
@@ -85,7 +93,8 @@ const logModalContent = () => {
       </div>
     </div>
     <Modal :show="modalDisplay" @close="closeModal">
-      <CreateEvent v-if="modalContent === 'new-event'"/>
+      <CreateUser v-if="modalContent === 'new-user'" />
+      <CreateEvent v-if="modalContent === 'new-event'" />
       <FileUpload v-if="modalContent === 'file-upload'" />
     </Modal>
   </AuthenticatedLayout>
