@@ -24,6 +24,13 @@ return new class extends Migration {
       $table->timestamps();
     });
 
+    Schema::create('dj_events', function (Blueprint $table) {
+      $table->id();
+      $table->foreignId('event_id')->constrained()->onDelete('cascade');
+      $table->foreignId('dj_id')->constrained()->onDelete('cascade');
+      $table->timestamps();
+    });
+
   }
 
   /**
@@ -31,7 +38,8 @@ return new class extends Migration {
    */
   public function down(): void
   {
-    Schema::dropIfExists('catalog_song');
+    Schema::dropIfExists('dj_events');
     Schema::dropIfExists('playlist_song');
+    Schema::dropIfExists('catalog_song');
   }
 };

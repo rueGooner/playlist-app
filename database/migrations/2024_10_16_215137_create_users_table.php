@@ -22,6 +22,13 @@ return new class extends Migration {
       $table->timestamps();
     });
 
+    Schema::create('djs', function (Blueprint $table) {
+      $table->id();
+      $table->foreignId('user_id')->constrained()->onDelete('cascade');
+      $table->string('catalog_name')->unique();
+      $table->timestamps();
+    });
+
     Schema::create('password_reset_tokens', function (Blueprint $table) {
       $table->string('email')->primary();
       $table->string('token');
@@ -43,8 +50,9 @@ return new class extends Migration {
    */
   public function down(): void
   {
-    Schema::dropIfExists('users');
-    Schema::dropIfExists('password_reset_tokens');
     Schema::dropIfExists('sessions');
+    Schema::dropIfExists('password_reset_tokens');
+    Schema::dropIfExists('djs');
+    Schema::dropIfExists('users');
   }
 };
