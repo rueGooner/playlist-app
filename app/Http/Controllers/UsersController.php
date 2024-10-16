@@ -10,7 +10,7 @@ class UsersController extends Controller
   public function index()
   {
     $users = User::query()
-      ->select('id', 'name', 'email')
+      ->select('id', 'name', 'email', 'role')
       ->where('role', '!=', 'admin')
       ->get();
     return response()->json($users);

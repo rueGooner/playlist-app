@@ -52,7 +52,7 @@ const removeSelectedUser = () => {
       <div class="relative">
         <TextInput v-model="searchTerm" type="search" class="w-full border-accent"/>
         <ul v-if="searchUsers.length"
-            class="absolute z-10 bg-white border border-accent mt-1 rounded shadow-lg">
+            class="absolute z-10 bg-white border border-accent mt-1 rounded shadow-lg overflow-y-scroll h-52">
           <li v-for="user in searchUsers" :key="user.email" class="p-2 hover:bg-gray-200 cursor-pointer"
               @click="handleUserSelection(user)">
             {{ user.name }} ({{ user.email }})

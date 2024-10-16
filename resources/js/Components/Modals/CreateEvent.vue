@@ -28,7 +28,7 @@ const form = useForm({
 
 onMounted(async () => {
   const response = await axios.get('/api/users');
-  existingUsers.value = response.data;
+  existingUsers.value = response.data.filter(user => user.role ==='client');
 });
 
 const handleSubmit = () => {

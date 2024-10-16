@@ -66,13 +66,13 @@ const logModalContent = () => {
                 <h3 class="text-xl font-light">Create New Event</h3>
               </div>
             </PrimaryButton>
-            <PrimaryButton @click="setModalContent('file-upload');"
-                           class="flex flex-col items-center justify-center">
-              <div class="flex flex-col items-center space-x-2">
-                <Icon icon="mdi:music-box-multiple-outline" class="text-3xl font-light"/>
-                <h3 class="text-xl font-light">Upload Catalogue</h3>
-              </div>
-            </PrimaryButton>
+<!--            <PrimaryButton @click="setModalContent('file-upload');"-->
+<!--                           class="flex flex-col items-center justify-center">-->
+<!--              <div class="flex flex-col items-center space-x-2">-->
+<!--                <Icon icon="mdi:music-box-multiple-outline" class="text-3xl font-light"/>-->
+<!--                <h3 class="text-xl font-light">Upload Catalogue</h3>-->
+<!--              </div>-->
+<!--            </PrimaryButton>-->
             <Tile title="Manage Events" href="/events">
               <template #icon>
                 <Icon icon="mdi:clipboard-text" class="text-3xl"/>
