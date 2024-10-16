@@ -24,4 +24,15 @@ class CatalogController extends Controller
       'catalog' => $catalog,
     ]);
   }
+
+  /**
+   * Create a New Catalog
+   */
+  public function createCatalog(int $userId, string $catalogName)
+  {
+    return Catalog::create([
+      'user_id' => $userId,
+      'catalog_name' => $catalogName,
+    ]);
+  }
 }

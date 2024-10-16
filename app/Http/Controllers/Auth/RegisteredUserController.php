@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DJController;
+use App\Http\Controllers\PlaylistController;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -16,37 +19,60 @@ use Inertia\Response;
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display the registration view.
-     */
-    public function create(): Response
-    {
-        return Inertia::render('Auth/Register');
+  private DJController $djController;
+  private PlaylistController $playlistController;
+  private CatalogController $catalogController;
+
+  public function __construct(DJController $djController, CatalogController $catalogController, PlaylistController $playlistController)
+  {
+    $this->djController = $djController;
+    $this->catalogController = $catalogController;
+    $this->playlistController = $playlistController;
+  }
+
+  /**
+   * Handle an incoming registration request.
+   *
+   * @throws ValidationException
+   */
+  public function store(Request $request): RedirectResponse
+  {
+    $request->validate([
+      'name' => 'required|string|max:255',
+      'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
+      'password' => ['required', 'confirmed', Rules\Password::defaults()],
+      'role' => 'required|in:client,dj'
+    ]);
+
+    $user = User::create([
+      'name' => $request->name,
+      'email' => $request->email,
+      'password' => Hash::make($request->password),
+      'role' => $request->role
+    ]);
+
+    if ($request->role === 'dj') {
+      $catalogName = $request->name . ' Catalog';
+      $dj = $this->djController->createDJ($user->id, $catalogName);
+      $this->catalogController->createCatalog($dj->id, $catalogName);
     }
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws ValidationException
-     */
-    public function store(Request $request): RedirectResponse
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        return redirect(route('dashboard', absolute: false));
+    if ($request->role === 'client') {
+      $this->playlistController->createPlaylist($user->id, $user->name);
     }
+
+    event(new Registered($user));
+
+    Auth::login($user);
+
+    return redirect(route('dashboard', absolute: false));
+  }
+
+  /**
+   * Display the registration view.
+   */
+  public function create(): Response
+  {
+    return Inertia::render('Auth/Register');
+  }
 }
