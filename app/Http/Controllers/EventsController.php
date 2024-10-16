@@ -33,7 +33,7 @@ class EventsController extends Controller
   {
     $this->validateRequest($request);
 
-    $user = $this->findUserByEmail($request->user_email);
+    $user = $this->findUserByID($request->user_email);
 
     if (!$user) {
       return redirect()->back()->withErrors(['user_email' => 'User not found.']);
@@ -48,8 +48,7 @@ class EventsController extends Controller
   {
     $request->validate([
       'title' => 'required|string|max:255',
-      'user_name' => 'required|string|max:255',
-      'user_email' => 'required|string|max:255',
+      'user_id' => 'required|integer',
       'date' => 'required|date',
       'start_time' => 'required|date_format:H:i',
       'end_time' => 'required|date_format:H:i|after:start_time',
@@ -57,9 +56,9 @@ class EventsController extends Controller
     ]);
   }
 
-  private function findUserByEmail(string $email): ?User
+  private function findUserByID(int $userId): ?User
   {
-    return User::where('email', $email)->first();
+    return User::where('id', $userId)->first();
   }
 
   private function createNewEvent(Request $request, int $userId): Event
