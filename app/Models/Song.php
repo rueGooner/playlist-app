@@ -18,13 +18,13 @@ class Song extends Model
       'release_date',
     ];
 
-    public function catalog()
-    {
-      return $this->belongsTo(Catalog::class);
-    }
+  public function catalogs()
+  {
+    return $this->belongsToMany(Catalog::class, 'catalog_song');
+  }
 
-    public function playlists()
-    {
-      return $this->belongsToMany(Playlist::class, 'playlist_song_pivot')->withTimestamps();
-    }
+  public function playlists()
+  {
+    return $this->belongsToMany(Playlist::class, 'playlist_song')->withTimestamps();
+  }
 }

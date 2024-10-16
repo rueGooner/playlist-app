@@ -20,12 +20,17 @@ class Event extends Model
     return $this->belongsTo(User::class);
   }
 
+  public function djs()
+  {
+    return $this->belongsToMany(DJ::class, 'dj_event');
+  }
+
   /**
    * Get the playlist for the event.
    */
-  public function playlists(): HasMany
+  public function playlists(): HasOne
   {
-    return $this->hasMany(Playlist::class);
+    return $this->hasOne(Playlist::class);
   }
 
   /**

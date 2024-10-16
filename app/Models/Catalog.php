@@ -10,4 +10,14 @@ class Catalog extends Model
   use HasFactory;
 
   protected $fillable = ['name'];
+
+  public function dj()
+  {
+    return $this->belongsTo(DJ::class);
+  }
+
+  public function songs()
+  {
+    return $this->belongsToMany(Song::class, 'catalog_song');
+  }
 }

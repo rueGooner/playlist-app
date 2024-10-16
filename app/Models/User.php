@@ -69,25 +69,20 @@ class User extends Authenticatable
 
   /**
    *
-   * @return HasOne
+   * @return HasMany
    */
-  public function catalogs()
+  public function events(): HasMany
   {
-    return $this->hasOne(Catalog::class);
-  }
-
-  public function songs()
-  {
-    return $this->hasManyThrough(Song::class, Catalog::class);
+    return $this->hasMany(Event::class);
   }
 
   /**
    *
    * @return HasMany
    */
-  public function events(): HasMany
+  public function playlists(): HasMany
   {
-    return $this->hasMany(Event::class);
+    return $this->hasMany(Playlist::class);
   }
 
   public function isAdmin(): bool
