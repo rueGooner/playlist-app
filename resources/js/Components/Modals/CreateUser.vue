@@ -5,8 +5,9 @@ import { NewUser } from '../../../types/users.interface';
 import InputLabel from '@/Components/InputLabel.vue';
 import TextInput from '@/Components/TextInput.vue';
 import InputError from '@/Components/InputError.vue';
-import InputSuccess from '@/Components/InputSuccess.vue';
+import InputSuccess from '@/Components/ToolTip.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
+import ToolTip from '@/Components/ToolTip.vue';
 
 const password_confirmation = ref<string>('');
 const form = useForm<NewUser>({
@@ -57,7 +58,7 @@ const shouldShowFeedback = computed(() => {
         <InputLabel for="password" value="Password"/>
         <TextInput v-model="form.password" class="w-full border-accent focus:border-primary focus:ring-transparent"/>
         <InputError v-if="shouldShowFeedback && !passwordsMatch" class="mt-1" message="Passwords do not match!"/>
-        <InputSuccess v-if="shouldShowFeedback && passwordsMatch" class="mt-1"
+        <ToolTip v-if="shouldShowFeedback && passwordsMatch" class="mt-1"
                       message="Passwords match."/>
       </div>
       <div class="mt-2">
