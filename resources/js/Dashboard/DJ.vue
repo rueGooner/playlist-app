@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  $END$
+The DJ Dashboard
 </template>
 
 <style scoped>

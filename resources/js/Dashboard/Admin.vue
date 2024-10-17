@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  $END$
+<p>THE ADMIN DASHBOARD</p>
 </template>
 
 <style scoped>

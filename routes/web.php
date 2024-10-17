@@ -5,6 +5,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\UploadsController;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -20,7 +21,11 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
   // Dashboard Route
   Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    $user = Auth::user();
+
+    return Inertia::render('Dashboard', [
+      'role' => $user->role
+    ]);
   })->name('dashboard');
 
   // Events Resource Routes

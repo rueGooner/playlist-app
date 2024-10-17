@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  $END$
+The Client ting.
 </template>
 
 <style scoped>
