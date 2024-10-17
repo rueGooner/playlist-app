@@ -23,7 +23,7 @@ return new class extends Migration {
     Schema::create('catalogs', function (Blueprint $table) {
       $table->id();
       $table->string('name')->unique();
-      $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Reference to the DJ
+      $table->foreignId('dj_id')->constrained('djs')->onDelete('cascade'); // Reference to the DJ
       $table->timestamps();
     });
   }

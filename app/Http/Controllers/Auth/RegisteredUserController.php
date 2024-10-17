@@ -62,13 +62,9 @@ class RegisteredUserController extends Controller
     ]);
 
     if ($request->role === 'dj') {
-      $catalogName = $request->name . ' Catalog';
+      $catalogName = $request->name . '\'s Catalog';
       $dj = $this->djController->createDJ($user->id, $catalogName);
       $this->catalogController->createCatalog($dj->id, $catalogName);
-    }
-
-    if ($request->role === 'client') {
-      $this->playlistController->createPlaylist($user->id, $user->name);
     }
 
     event(new Registered($user));

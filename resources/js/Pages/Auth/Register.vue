@@ -16,8 +16,8 @@ const form = useForm({
   last_name: '',
   email: '',
   password: '',
-  dj: false,
-  role: isDJ ? 'dj' : 'client',
+  password_confirmation: '',
+  role: 'client'
 });
 
 const submit = () => {
@@ -28,13 +28,16 @@ const submit = () => {
   });
 };
 
-const password_confirmation = ref<string>('');
 const hasStartedTypingConfirmation = ref<boolean>(false);
 
-watch(password_confirmation, (newValue) => {
+watch(() => form.password_confirmation, (newValue) => {
   if (newValue !== '') {
     hasStartedTypingConfirmation.value = newValue.length > 0;
   }
+});
+
+watch(isDJ, (newValue) => {
+  form.role = newValue ? 'dj' : 'client';
 });
 
 // Computed property to check if passwords match
@@ -42,12 +45,12 @@ const passwordsMatch = computed(() => {
   if (!hasStartedTypingConfirmation.value) {
     return true; // Before typing in confirmation, we assume they match.
   }
-  return form.password.length !== 0 && form.password === password_confirmation.value;
+  return form.password.length !== 0 && form.password === form.password_confirmation;
 });
 
 // Computed property to check if feedback should be shown (when both fields are not empty)
 const shouldShowFeedback = computed(() => {
-  return form.password.length > 0 && password_confirmation.value.length > 0;
+  return form.password.length > 0 && form.password_confirmation.length > 0;
 });
 </script>
 
@@ -79,7 +82,7 @@ const shouldShowFeedback = computed(() => {
             id="last_name"
             type="text"
             class="mt-1 w-full border-accent focus:border-primary focus:ring-primary"
-            v-model="form.name"
+            v-model="form.first_name"
             required
             autofocus
             autocomplete="name"
@@ -96,7 +99,7 @@ const shouldShowFeedback = computed(() => {
           id="username"
           type="text"
           class="mt-1 w-full border-accent focus:border-primary focus:ring-primary"
-          v-model="form.name"
+          v-model="form.last_name"
           required
           autofocus
           autocomplete="name"
@@ -148,7 +151,7 @@ const shouldShowFeedback = computed(() => {
           id="password_confirmation"
           type="password"
           class="mt-1 w-full border-accent focus:border-primary focus:ring-primary"
-          v-model="password_confirmation"
+          v-model="form.password_confirmation"
           required
           autocomplete="new-password"
         />

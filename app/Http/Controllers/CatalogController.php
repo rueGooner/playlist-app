@@ -9,6 +9,11 @@ use Inertia\Inertia;
 
 class CatalogController extends Controller
 {
+  protected $fillable = [
+    'dj_id',
+    'name',
+  ];
+
   /*
  * Display a listing of all events on /events page.
  */
@@ -31,8 +36,8 @@ class CatalogController extends Controller
   public function createCatalog(int $userId, string $catalogName)
   {
     return Catalog::create([
-      'user_id' => $userId,
-      'catalog_name' => $catalogName,
+      'dj_id' => $userId,
+      'name' => $catalogName,
     ]);
   }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\DJ;
 
 class DJController extends Controller
 {
@@ -12,7 +12,7 @@ class DJController extends Controller
   public function createDJ(int $userId, string $catalogName)
   {
     return DJ::create([
-      'user_id' => $userId, // I'm asking if this should just be 'id' => $userId
+      'user_id' => $userId,
       'catalog_name' => $catalogName,
     ]);
   }

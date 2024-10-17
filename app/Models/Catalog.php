@@ -9,7 +9,10 @@ class Catalog extends Model
 {
   use HasFactory;
 
-  protected $fillable = ['name'];
+  protected $fillable = [
+    'dj_id',
+    'name',
+  ];
 
   public function dj()
   {
