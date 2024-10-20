@@ -22,8 +22,8 @@ export const birdsBerries = {
 }
 
 export const myTheme = {
-  primary: defaultTheme.slate[600],
-  secondary: defaultTheme.slate[200],
-  accent: defaultTheme.indigo[400],
-  highlight: defaultTheme.rose[400]
+  primary: defaultTheme.rose[400] ,
+  secondary: defaultTheme.indigo[400] ,
+  accent: defaultTheme.slate[200],
+  highlight: defaultTheme.slate[600]
 }

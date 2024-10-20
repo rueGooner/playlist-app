@@ -24,7 +24,7 @@ const showingNavigationDropdown = ref(false);
               <div class="flex shrink-0 items-center">
                 <Link :href="route('dashboard')">
                   <ApplicationLogo
-                    class="block h-9 w-auto fill-current text-highlight"
+                    class="block h-9 w-auto fill-current text-primary"
                   />
                 </Link>
               </div>
@@ -48,7 +48,7 @@ const showingNavigationDropdown = ref(false);
                     <span class="inline-flex rounded-md">
                       <button
                         type="button"
-                        class="inline-flex items-center rounded-md border border-transparent bg-slate-600 text-slate-200 px-3 py-2 text-sm font-medium leading-4 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
+                        class="inline-flex items-center rounded-md border border-transparent bg-slate-600 text-slate-200 px-3 py-2 text-sm font-medium leading-4 transition duration-150 ease-in-out focus:outline-none"
                       >
                         {{ $page.props.auth.user.name }}
 

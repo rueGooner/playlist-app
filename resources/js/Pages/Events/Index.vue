@@ -16,8 +16,8 @@
           {{ message }}
           <Icon icon="mdi:close" @click="closeMessage" />
         </div>
-        <table class="w-full text-sm text-left rtl:text-right text-primary shadow-lg">
-          <thead class="text-secondary uppercase bg-primary">
+        <table class="w-full text-sm text-left rtl:text-right text-highlight shadow-lg">
+          <thead class="text-secondary uppercase bg-highlight">
           <tr>
             <th scope="col" class="px-6 py-3">Event Title</th>
             <th scope="col" class="px-6 py-3">Organizer</th>
@@ -28,7 +28,7 @@
           </thead>
           <tbody>
           <tr v-for="event in events" :key="event.id" class="bg-slate-800 border-b text-white">
-            <th scope="row" class="px-6 py-4 font-medium text-sm whitespace-nowap text-accent">{{
+            <th scope="row" class="px-6 py-4 font-medium text-sm whitespace-nowap text-secondary">{{
                 event.title
               }}</th>
             <td class="px-6 py-3 font-medium text-sm text-white whitespace-nowrap">{{ event.user.name }}</td>

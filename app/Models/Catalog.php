@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Catalog extends Model
 {
@@ -14,7 +15,7 @@ class Catalog extends Model
     'name',
   ];
 
-  public function dj()
+  public function dj(): BelongsTo
   {
     return $this->belongsTo(DJ::class);
   }

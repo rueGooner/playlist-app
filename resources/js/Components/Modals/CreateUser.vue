@@ -41,22 +41,22 @@ const shouldShowFeedback = computed(() => {
 </script>
 
 <template>
-  <form @submit.prevent class="bg-secondary px-4 py-6">
+  <form @submit.prevent class="px-4 py-6">
     <h3 class="text-xl">Create New User</h3>
     <div class="grid grid-cols-2 gap-6 mt-2">
       <div class="mt-2">
         <InputLabel for="first_name" value="First Name"/>
-        <TextInput v-model="form.first_name" class="w-full border-accent focus:border-primary focus:ring-transparent"/>
+        <TextInput v-model="form.first_name" class="w-full border-secondary focus:border-highlight focus:ring-transparent"/>
       </div>
       <div class="mt-2">
         <InputLabel for="last_name" value="Surname"/>
-        <TextInput v-model="form.last_name" class="w-full border-accent focus:border-primary focus:ring-transparent"/>
+        <TextInput v-model="form.last_name" class="w-full border-secondary focus:border-highlight focus:ring-transparent"/>
       </div>
     </div>
     <div class="grid grid-cols-2 gap-6 mt-2">
       <div class="mt-2">
         <InputLabel for="password" value="Password"/>
-        <TextInput v-model="form.password" class="w-full border-accent focus:border-primary focus:ring-transparent"/>
+        <TextInput v-model="form.password" class="w-full border-secondary focus:border-highlight focus:ring-transparent"/>
         <InputError v-if="shouldShowFeedback && !passwordsMatch" class="mt-1" message="Passwords do not match!"/>
         <ToolTip v-if="shouldShowFeedback && passwordsMatch" class="mt-1"
                       message="Passwords match."/>
@@ -64,11 +64,11 @@ const shouldShowFeedback = computed(() => {
       <div class="mt-2">
         <InputLabel for="password_confirmation" value="Password Confirmation"/>
         <TextInput v-model="password_confirmation"
-                   class="w-full border-accent focus:border-primary focus:ring-transparent"/>
+                   class="w-full border-secondary focus:border-highlight focus:ring-transparent"/>
       </div>
       <div class="mt-2">
         <InputLabel for="role" value="User Type"/>
-        <select v-model="form.role" class="rounded-md border-accent w-full text-primary">
+        <select v-model="form.role" class="rounded-md border-secondary w-full text-highlight">
           <option disabled value="">User Role</option>
           <option value="dj">DJ</option>
           <option value="client">Client</option>
@@ -77,7 +77,7 @@ const shouldShowFeedback = computed(() => {
       <div class="mt-2">
         <InputLabel for="user_name" value="Username"/>
         <TextInput v-model="form.user_name"
-                   class="w-full border-accent focus:border-primary focus:ring-transparent"/>
+                   class="w-full border-secondary focus:border-highlight focus:ring-transparent"/>
       </div>
     </div>
     <div class="mt-4 flex justify-end">

@@ -54,49 +54,49 @@ const handleExistingUser = (user: User | null) => {
 </script>
 
 <template>
-  <form @submit.prevent="handleSubmit" class="bg-secondary px-4 py-6">
+  <form @submit.prevent="handleSubmit" class="px-4 py-6">
     <div class="flex grid grid-cols-2 gap-6">
       <AutoComplete :users="existingUsers" @update:user_id="handleExistingUser" />
-      <div class="text-primary">
+      <div class="text-highlight">
         <InputLabel for="title" value="Event Title"/>
-        <TextInput v-model="form.title" class="w-full border-accent focus:border-primary focus:ring-primary"/>
+        <TextInput v-model="form.title" class="w-full border-secondary focus:border-highlight focus:ring-highlight"/>
         <InputError class="mt-2" :message="form.errors.title"/>
       </div>
     </div>
     <div>
-      <div class="mt-4 text-primary inline-flex grid grid-cols-3 gap-6">
+      <div class="mt-4 text-highlight inline-flex grid grid-cols-3 gap-6">
         <div class="relative w-full">
           <InputLabel for="date" value="Event Date"/>
           <TextInput v-model="form.date" type="date"
-                     class="w-full border-accent focus:border-primary focus:ring-primary"/>
+                     class="w-full border-secondary focus:border-highlight focus:ring-highlight"/>
           <InputError class="mt-2" :message="form.errors.date"/>
         </div>
         <div class="relative w-full">
           <InputLabel for="start_time" value="Start Time"/>
           <TextInput v-model="form.start_time" type="time"
-                     class="w-full border-accent focus:border-primary focus:ring-highlight"/>
+                     class="w-full border-secondary focus:border-highlight focus:ring-primary"/>
           <InputError class="mt-2" :message="form.errors.start_time"/>
         </div>
         <div class="w-full">
           <InputLabel for="end_time" value="End Time"/>
           <TextInput v-model="form.end_time" type="time"
-                     class="w-full border-accent focus:border-primary focus:ring-highlight"/>
+                     class="w-full border-secondary focus:border-highlight focus:ring-primary"/>
           <InputError class="mt-2" :message="form.errors.end_time"/>
         </div>
       </div>
-      <div class="mt-4 text-primary">
+      <div class="mt-4 text-highlight">
         <InputLabel for="address" value="Address" />
-        <textarea class="rounded-md border-accent w-full resize-none shadow-sm" rows="4" v-model="form.address"></textarea>
+        <textarea class="rounded-md border-secondary w-full resize-none shadow-sm" rows="4" v-model="form.address"></textarea>
       </div>
     </div>
     <div class="mt-4 flex justify-end">
       <div v-if="selectedUser"  class="flex flex-col items-end justify-end">
         <InputLabel for="existing-user" value="New event for"/>
         <p
-          class="flex items-center bg-highlight inline-flex text-white rounded text-sm px-2 py-1 font-bold">
+          class="flex items-center bg-primary inline-flex text-white rounded text-sm px-2 py-1 font-bold">
           {{ selectedUser }}
           <Icon icon="mdi:close"
-                class="border rounded ml-8 hover:border-accent hover:text-accent cursor-pointer font-bold"
+                class="border rounded ml-8 hover:border-secondary hover:text-secondary cursor-pointer font-bold"
                 @click="removeSelectedUser()" />
         </p>
       </div>

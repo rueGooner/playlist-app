@@ -9,7 +9,7 @@ const props = defineProps<{
 
 <template>
   <Link :href="href"
-        class="tile bg-accent text-white p-4 rounded-lg shadow hover:shadow-lg hover:bg-highlight cursor-pointer transition-shadow duration-200 flex flex-col items-center justify-center">
+        class="tile bg-secondary text-white p-4 rounded-lg shadow hover:shadow-lg hover:bg-primary cursor-pointer transition-shadow duration-200 flex flex-col items-center justify-center">
     <div class="flex flex-col items-center space-x-2">
       <slot name="icon"></slot>
       <h3 class="text-xl font-light">{{ title }}</h3>

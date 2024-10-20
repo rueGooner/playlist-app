@@ -58,19 +58,19 @@ const handleExistingUser = (user: User | null) => {
 
 <template>
   <form @submit.prevent="handleFileUpload" class="bg-secondary px-4 py-6">
-    <div class="mt-2 text-primary max-w-md mx-auto">
+    <div class="mt-2 text-highlight max-w-md mx-auto">
       <AutoComplete :users="existingUsers" @update:user_id="handleExistingUser" />
     </div>
-    <div class="mt-4 text-primary max-w-md mx-auto">
+    <div class="mt-4 text-highlight max-w-md mx-auto">
       <InputLabel for="catalog_name" value="Catalog Name"/>
-      <TextInput v-model="form.catalog_name" class="w-full border-accent focus:border-primary focus:ring-primary"/>
+      <TextInput v-model="form.catalog_name" class="w-full border-secondary focus:border-highlight focus:ring-highlight"/>
       <InputError class="mt-2" :message="form.errors.catalog_name"/>
     </div>
     <div class="font-[sans-serif] max-w-md mx-auto mt-4">
       <InputLabel class="text-base text-gray-500 font-semibold mb-2 block">Upload file</InputLabel>
       <input @change="handleFileChange" type="file"
-                 class="w-full text-primary font-semibold text-sm bg-white border file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-accent file:text-white file:hover:bg-highlight rounded"/>
-      <p class="text-xs text-primary mt-2">Only CSV files are allowed.</p>
+                 class="w-full text-highlight font-semibold text-sm bg-white border file:cursor-pointer cursor-pointer file:border-0 file:py-3 file:px-4 file:mr-4 file:bg-secondary file:text-white file:hover:bg-primary rounded"/>
+      <p class="text-xs text-highlight mt-2">Only CSV files are allowed.</p>
     </div>
     <div class="mt-4 flex justify-end">
       <PrimaryButton class="ms-4">

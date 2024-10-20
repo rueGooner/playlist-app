@@ -66,7 +66,7 @@ const shouldShowFeedback = computed(() => {
           <TextInput
             id="first_name"
             type="text"
-            class="mt-1 w-full border-accent focus:border-primary focus:ring-primary"
+            class="mt-1 w-full border-secondary focus:border-highlight focus:ring-highlight"
             v-model="form.name"
             required
             autofocus
@@ -81,7 +81,7 @@ const shouldShowFeedback = computed(() => {
           <TextInput
             id="last_name"
             type="text"
-            class="mt-1 w-full border-accent focus:border-primary focus:ring-primary"
+            class="mt-1 w-full border-secondary focus:border-highlight focus:ring-highlight"
             v-model="form.first_name"
             required
             autofocus
@@ -98,7 +98,7 @@ const shouldShowFeedback = computed(() => {
         <TextInput
           id="username"
           type="text"
-          class="mt-1 w-full border-accent focus:border-primary focus:ring-primary"
+          class="mt-1 w-full border-secondary focus:border-highlight focus:ring-highlight"
           v-model="form.last_name"
           required
           autofocus
@@ -114,7 +114,7 @@ const shouldShowFeedback = computed(() => {
         <TextInput
           id="email"
           type="email"
-          class="mt-1 w-full border-accent focus:border-primary focus:ring-primary"
+          class="mt-1 w-full border-secondary focus:border-highlight focus:ring-highlight"
           v-model="form.email"
           required
           autocomplete="username"
@@ -132,7 +132,7 @@ const shouldShowFeedback = computed(() => {
         <TextInput
           id="password"
           type="password"
-          class="mt-1 w-full border-accent focus:border-primary focus:ring-primary"
+          class="mt-1 w-full border-secondary focus:border-highlight focus:ring-highlight"
           v-model="form.password"
           required
           autocomplete="new-password"
@@ -150,7 +150,7 @@ const shouldShowFeedback = computed(() => {
         <TextInput
           id="password_confirmation"
           type="password"
-          class="mt-1 w-full border-accent focus:border-primary focus:ring-primary"
+          class="mt-1 w-full border-secondary focus:border-highlight focus:ring-highlight"
           v-model="form.password_confirmation"
           required
           autocomplete="new-password"
