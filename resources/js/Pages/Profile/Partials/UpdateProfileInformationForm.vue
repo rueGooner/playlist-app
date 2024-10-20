@@ -25,7 +25,7 @@ const form = useForm({
         Profile Information
       </h2>
 
-      <p class="mt-1 text-sm text-slate-600
+      <p class="mt-1 text-sm text-highlight
 ">
         Update your account's profile information and email address.
       </p>

@@ -12,7 +12,7 @@ defineProps<{
 
 <template>
   <Head title="Welcome" />
-  <div class="bg-slate-200 text-slate-600">
+  <div class="bg-slate-200 text-highlight">
     <div class="relative flex min-h-screen flex-col items-center justify-center">
       <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
         <main>

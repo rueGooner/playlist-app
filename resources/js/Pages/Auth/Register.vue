@@ -161,7 +161,7 @@ const shouldShowFeedback = computed(() => {
         <div class="mt-4 block">
           <label class="flex items-center">
             <Checkbox name="remember" v-model:checked="isDJ"/>
-            <span class="ms-2 text-sm text-slate-600">
+            <span class="ms-2 text-sm text-highlight">
             DJ
           </span>
           </label>

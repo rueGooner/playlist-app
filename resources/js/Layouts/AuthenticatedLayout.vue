@@ -48,7 +48,7 @@ const showingNavigationDropdown = ref(false);
                     <span class="inline-flex rounded-md">
                       <button
                         type="button"
-                        class="inline-flex items-center rounded-md border border-transparent bg-slate-600 text-slate-200 px-3 py-2 text-sm font-medium leading-4 transition duration-150 ease-in-out focus:outline-none"
+                        class="inline-flex items-center rounded-md border border-transparent bg-highlight text-slate-200 px-3 py-2 text-sm font-medium leading-4 transition duration-150 ease-in-out focus:outline-none"
                       >
                         {{ $page.props.auth.user.name }}
 
@@ -169,7 +169,7 @@ const showingNavigationDropdown = ref(false);
       </nav>
 
       <!-- Page Heading -->
-      <header class="bg-white shadow dark:bg-slate-600" v-if="$slots.header">
+      <header class="bg-white shadow dark:bg-highlight" v-if="$slots.header">
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <slot name="header" />
         </div>

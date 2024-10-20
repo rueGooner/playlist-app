@@ -46,9 +46,9 @@ const logModalContent = () => {
     <div class="py-12">
       <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div
-          class="overflow-hidden shadow-sm rounded bg-slate-600"
+          class="overflow-hidden shadow-sm rounded bg-highlight"
         >
-          <div class="p-6 text-slate-600 bg-slate-200">
+          <div class="p-6 text-highlight bg-slate-200">
             A welcome message of some sort.
           </div>
           <div class="dashboard grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-6">
