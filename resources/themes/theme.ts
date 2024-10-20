@@ -1,29 +1,28 @@
 import defaultTheme from 'tailwindcss/colors';
 
 export const blueGreens = {
-  primary: '#021C1E',
-  secondary: '#004445',
-  accent: '#2C7873',
-  highlight: '#6FB98F'
-}
-
-export const icyBlues = {
-  primary: '#F1F1F2',
-  secondary: '#BCBABE',
-  accent: '#A1D6E2',
-  highlight: '#1995AD'
+  primary: defaultTheme.teal[600],
+  secondary: defaultTheme.sky[600],
+  accent: defaultTheme.slate[200],
+  highlight: defaultTheme.cyan[800],
+  canvas: defaultTheme.slate[200],
+  ink: defaultTheme.neutral[100]
 }
 
 export const birdsBerries = {
-  primary: '#9A9EAB',
-  secondary: '#5D5E5E',
-  accent: '#EC96A4',
-  highlight: '#DFE166'
+  primary: defaultTheme.cyan[600],
+  secondary: defaultTheme.emerald[500],
+  accent: defaultTheme.neutral[200],
+  highlight: defaultTheme.slate[600],
+  canvas: defaultTheme.slate[200],
+  ink: defaultTheme.neutral[100]
 }
 
 export const myTheme = {
   primary: defaultTheme.rose[400] ,
   secondary: defaultTheme.indigo[400] ,
-  accent: defaultTheme.slate[200],
-  highlight: defaultTheme.slate[600]
+  accent: defaultTheme.fuchsia[200],
+  highlight: defaultTheme.slate[600],
+  canvas: defaultTheme.slate[200],
+  ink: defaultTheme.neutral[100]
 }

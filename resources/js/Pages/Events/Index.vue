@@ -4,7 +4,7 @@
   <AuthenticatedLayout>
     <template #header>
       <h2
-        class="text-xl font-semibold leading-tight text-slate-200"
+        class="text-xl font-semibold leading-tight text-ink"
       >
         Event Management
       </h2>

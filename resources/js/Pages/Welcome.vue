@@ -12,7 +12,7 @@ defineProps<{
 
 <template>
   <Head title="Welcome" />
-  <div class="bg-slate-200 text-highlight">
+  <div class="bg-canvas text-highlight">
     <div class="relative flex min-h-screen flex-col items-center justify-center">
       <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
         <main>
@@ -20,7 +20,7 @@ defineProps<{
             <!-- Hero Section -->
             <div class="text-center p-8">
               <h1 class="text-4xl font-bold mb-4">
-                Welcome to <span class="bg-primary text-slate-200 px-3 py-1 rounded shadow-sm">DJ Playlist
+                Welcome to <span class="bg-primary text-ink px-3 py-1 rounded shadow-sm">DJ Playlist
                 Creator</span>
               </h1>
               <p class="text-lg mb-8">
@@ -33,8 +33,8 @@ defineProps<{
               <div>
                 <Link href="/login">
                   <button
-                    class="btn relative border border-transparent bg-primary py-2 px-6 rounded mx-2 overflow-hidden text-slate-200 hover:text-primary">
-                    <span class="absolute inset-0 bg-slate-200"></span>
+                    class="btn relative border border-transparent bg-primary py-2 px-6 rounded mx-2 overflow-hidden text-ink hover:text-primary">
+                    <span class="absolute inset-0 bg-canvas"></span>
                     <span class="absolute inset-0 flex justify-center items-center">Login</span>
                     Login
                   </button>

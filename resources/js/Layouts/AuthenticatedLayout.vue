@@ -12,9 +12,9 @@ const showingNavigationDropdown = ref(false);
 
 <template>
   <div>
-    <div class="min-h-screen bg-slate-200">
+    <div class="min-h-screen bg-canvas text-ink">
       <nav
-        class="border-b border-gray-100 bg-slate-200"
+        class="border-b border-gray-100 bg-canvas"
       >
         <!-- Primary Navigation Menu -->
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -48,7 +48,7 @@ const showingNavigationDropdown = ref(false);
                     <span class="inline-flex rounded-md">
                       <button
                         type="button"
-                        class="inline-flex items-center rounded-md border border-transparent bg-highlight text-slate-200 px-3 py-2 text-sm font-medium leading-4 transition duration-150 ease-in-out focus:outline-none"
+                        class="inline-flex items-center rounded-md border border-transparent bg-highlight text-ink px-3 py-2 text-sm font-medium leading-4 transition duration-150 ease-in-out focus:outline-none"
                       >
                         {{ $page.props.auth.user.name }}
 
