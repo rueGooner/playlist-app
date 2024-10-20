@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
   {
     // 1. Admin User
     User::create([
-      'name' => 'Admin',
+      'name' => 'Admin User',
       'first_name' => 'Rueben',
       'last_name' => 'Cumberbatch',
       'email' => 'ruebencee@gmail.com',
@@ -25,8 +25,28 @@ class UserSeeder extends Seeder
       'role' => 'admin'
     ]);
 
-    $clientCount = rand(50, 150);
-    $djCount = 15;
+    User::create([
+      'name' => 'Test DJ',
+      'first_name' => 'Test',
+      'last_name' => 'DJ',
+      'email' => 'test-dj@gmail.com',
+      'password' => Hash::make('i6a8uejKJc!'),
+      'email_verified_at' => now(),
+      'role' => 'dj'
+    ]);
+
+    User::create([
+      'name' => 'Client User',
+      'first_name' => 'Client',
+      'last_name' => 'Tester',
+      'email' => 'test-client@gmail.com',
+      'password' => Hash::make('i6a8uejKJc!'),
+      'email_verified_at' => now(),
+      'role' => 'client'
+    ]);
+
+    $clientCount = rand(50, 100);
+    $djCount = 10;
 
     User::factory()->count($clientCount)->create([
       'role' => 'client',

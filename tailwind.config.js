@@ -1,6 +1,6 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
-import { myTheme } from "./resources/themes/theme";
+import {birdsBerries, blueGreens, myTheme} from "./resources/themes/theme";
 
 /** @type {import('tailwindcss').Config} */
 export default {

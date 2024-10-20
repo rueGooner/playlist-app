@@ -37,7 +37,7 @@ const logModalContent = () => {
   <AuthenticatedLayout>
     <template #header>
       <h2
-        class="text-xl font-semibold leading-tight text-ink"
+        class="text-xl font-semibold leading-tight"
       >
         Dashboard
       </h2>
@@ -52,6 +52,16 @@ const logModalContent = () => {
             A welcome message of some sort.
           </div>
           <div class="dashboard grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-6 bg-highlight">
+            <Tile title="Manage Users" href="/users">
+              <template #icon>
+                <Icon icon="mdi:clipboard-text" class="text-3xl"/>
+              </template>
+            </Tile>
+            <Tile title="Manage Events" href="/events">
+              <template #icon>
+                <Icon icon="mdi:clipboard-text" class="text-3xl"/>
+              </template>
+            </Tile>
             <PrimaryButton @click="setModalContent('new-user');"
                            class="flex flex-col items-center justify-center">
               <div class="flex flex-col items-center space-x-2">
