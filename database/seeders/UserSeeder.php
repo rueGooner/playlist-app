@@ -14,8 +14,6 @@ class UserSeeder extends Seeder
    */
   public function run(): void
   {
-    $faker = Faker::create();
-
     // 1. Admin User
     User::create([
       'name' => 'Admin',
@@ -32,14 +30,8 @@ class UserSeeder extends Seeder
 
     User::factory()->count($clientCount)->create([
       'role' => 'client',
-      'first_name' => $faker->firstName,
-      'last_name' => $faker->lastName,
     ]);
 
-    User::factory()->count($djCount)->create([
-      'role' => 'dj',
-      'first_name' => $faker->firstName,
-      'last_name' => $faker->lastName,
-    ]);
+    User::factory()->count($djCount)->dj()->create();
   }
 }
