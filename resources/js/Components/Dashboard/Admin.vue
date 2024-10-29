@@ -12,6 +12,10 @@ import CreateUser from '@/Components/Modals/CreateUser.vue';
 
 const modalContent = ref<string | null>(null);
 const modalDisplay = ref(false);
+const props = defineProps<{
+  message: string;
+}>();
+
 
 const setModalContent = (content: string) => {
   modalDisplay.value = true;
@@ -24,11 +28,6 @@ const closeModal = () => {
   modalDisplay.value = false;
   modalContent.value = null;
 }
-
-const logModalContent = () => {
-  console.log(modalContent.value); // Log modal content when opened
-};
-
 </script>
 
 <template>

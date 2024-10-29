@@ -45,7 +45,8 @@ class User extends Authenticatable
     'last_name',
     'email',
     'password',
-    'role'
+    'role',
+    'password_needs_reset'
   ];
 
   /**

@@ -24,7 +24,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     $user = Auth::user();
 
     return Inertia::render('Dashboard', [
-      'role' => $user->role
+      'role' => $user->role,
+      'message' => session('message'),
     ]);
   })->name('dashboard');
 

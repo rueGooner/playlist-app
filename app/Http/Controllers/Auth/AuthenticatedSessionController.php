@@ -29,30 +29,17 @@ class AuthenticatedSessionController extends Controller
    * Handle an incoming authentication request.
    * @throws ValidationException
    */
-  public function store(LoginRequest $request): Response
+  public function store(LoginRequest $request): RedirectResponse
   {
-    $this->validateLogin($request);
+    $request->authenticate();
+    $request->session()->regenerate();
 
-    if (Auth::attempt($request->only('email', 'password'), $request->filled('remember'))) {
-      $request->session()->regenerate();
-      $user = Auth::user();
-
-      // Check if user needs to reset password
-      if (Auth::user()->password_needs_reset) {
-        return Inertia::render('Auth/ResetPassword', [
-          'user' => $user,
-          'resetRequired' => true,
-        ]);
-      }
-
-      return Inertia::render('Dashboard', [
-        'role' => $user->role
-      ]);
+    $user = Auth::user(); // Get the authenticated user
+    if ($user->password_needs_reset) {
+      return redirect()->route('firstLogin.resetPassword'); // Redirect to reset password page
     }
 
-    throw ValidationException::withMessages([
-      'email' => 'The provided credentials do not match our records.',
-    ]);
+    return redirect()->intended(route('dashboard', absolute: false));
   }
 
   /**
